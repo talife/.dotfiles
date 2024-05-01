@@ -1,0 +1,13 @@
+export XDG_CONFIG_HOME=$HOME/.config
+
+source /usr/share/doc/fzf/examples/key-bindings.zsh
+source /usr/share/doc/fzf/examples/completion.zsh
+
+export REPOS=$HOME/git
+export GOPATH=$HOME/go
+export DOTFILES=$REPOS/.dotfiles
+
+addToPathFront $HOME/.local/scripts
+addToPathFront $HOME/.local/bin
+addToPathFront $HOME/.local/go/bin
+addToPathFront $HOME/go/bin
