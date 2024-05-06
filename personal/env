@@ -4,7 +4,7 @@
 # Required for x applications
 
 setxkbmap -option caps:ctrl_modifier
-export STOW_FOLDERS="bin,nvim,tmux,uwuntu,netflix,personal,i3,zsh,xkb"
+export STOW_FOLDERS="bin,nvim,tmux,personal,i3,zsh,xkb"
 
 increaseWatchers() {
     sudo sysctl fs.inotify.max_user_watches=65536
