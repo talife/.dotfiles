@@ -1,0 +1,3 @@
+[submodule "tree-sitter/tree-sitter-lua"]
+	path = tree-sitter/tree-sitter-lua
+	url = git@github.com:Azganoth/tree-sitter-lua.git
