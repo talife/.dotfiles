@@ -1,7 +1,7 @@
 export XDG_CONFIG_HOME=$HOME/.config
 
 alias settings="env XDG_CURRENT_DESKTOP=GNOME gnome-control-center"
-
+alias aws-vault="/mnt/c/awsvault/aws-vault.exe"
 PERSONAL=$XDG_CONFIG_HOME/personal
 source $PERSONAL/env
 for i in `find -L $PERSONAL`; do
@@ -15,7 +15,10 @@ export REPOS=$HOME/git
 export GOPATH=$HOME/go
 export DOTFILES=$REPOS/.dotfiles
 
+addToPathFront /usr/local/go/bin
 addToPathFront $HOME/.local/scripts
 addToPathFront $HOME/.local/bin
 addToPathFront $HOME/.local/go/bin
 addToPathFront $HOME/go/bin
+addToPathFront /mnt/c/Windows/System32
+addToPathFront /mnt/c/awsvault
