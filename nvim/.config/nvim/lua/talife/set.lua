@@ -1,7 +1,7 @@
 -- disable netrw at the very start of your init.lua
 -- this is for nvim-tree
-vim.g.loaded_netrw = 1
-vim.g.loaded_netrwPlugin = 1
+-- vim.g.loaded_netrw = 0
+-- vim.g.loaded_netrwPlugin = 0
 
 vim.opt.guicursor = ""
 

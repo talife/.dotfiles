@@ -14,6 +14,7 @@ source /usr/share/doc/fzf/examples/completion.zsh
 export REPOS=$HOME/git
 export GOPATH=$HOME/go
 export DOTFILES=$REPOS/.dotfiles
+export GIT_EDITOR=nvim
 
 addToPathFront /usr/local/go/bin
 addToPathFront $HOME/.local/scripts
