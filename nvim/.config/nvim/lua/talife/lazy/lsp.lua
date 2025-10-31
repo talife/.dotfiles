@@ -28,7 +28,7 @@ return {
             ensure_installed = {
                 "lua_ls",
                 "rust_analyzer",
-                "tsserver",
+                "ts_ls",
                 "gopls",
             },
             handlers = {
@@ -88,5 +88,9 @@ return {
                 prefix = "",
             },
         })
+        vim.keymap.set("n", "<leader>rn", vim.lsp.buf.rename, {})
+        vim.keymap.set({"n", "v"}, "<leader>ca", vim.lsp.buf.code_action, {})
+        vim.keymap.set("n", "<leader>gn", vim.diagnostic.goto_next)
+        vim.keymap.set("n", "<leader>gp", vim.diagnostic.goto_prev)
     end
 }
