@@ -28,8 +28,9 @@ return {
             ensure_installed = {
                 "lua_ls",
                 "rust_analyzer",
-                "ts_ls",
+                "vtsls",
                 "gopls",
+                "terraformls",
             },
             handlers = {
                 function(server_name) -- default handler (optional)

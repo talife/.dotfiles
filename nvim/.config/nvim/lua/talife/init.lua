@@ -64,6 +64,14 @@ autocmd("BufWritePre", {
     end
 })
 
+autocmd("BufWritePre", {
+    group = TalifeGroup,
+    pattern = { "*.tf", "*.tfvars" },
+    callback = function()
+        vim.lsp.buf.format({ async = false })
+    end,
+})
+
 autocmd('LspAttach', {
     group = TalifeGroup,
     callback = function(e)

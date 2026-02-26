@@ -107,12 +107,14 @@ source ~/.zsh_profile
 
 export NVM_DIR="$HOME/.config/nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
 # pnpm
-export PNPM_HOME="/home/vince/.local/share/pnpm"
+export PNPM_HOME="/home/talife/.local/share/pnpm"
+export NODE_EXTRA_CA_CERTS="/home/talife/gitlab-full-chain.pem"
 case ":$PATH:" in
   *":$PNPM_HOME:"*) ;;
   *) export PATH="$PNPM_HOME:$PATH" ;;
 esac
 # pnpm end
+fpath=(~/.zsh/completions $fpath)
+autoload -U compinit && compinit

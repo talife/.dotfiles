@@ -15,6 +15,9 @@ export REPOS=$HOME/git
 export GOPATH=$HOME/go
 export DOTFILES=$REPOS/.dotfiles
 export GIT_EDITOR=nvim
+export GALLIUM_DRIVER=d3d12
+export MESA_D3D12_DEFAULT_ADAPTER_NAME=NVIDIA
+export GPG_TTY=$(tty)
 
 addToPathFront /usr/local/go/bin
 addToPathFront $HOME/.local/scripts
@@ -24,3 +27,5 @@ addToPathFront $HOME/go/bin
 addToPathFront /mnt/c/Windows/System32
 addToPathFront /mnt/c/awsvault
 addToPathFront $HOME/adr-tools/src
+addToPathFront ${ASDF_DATA_DIR:-$HOME/.asdf}/shims
+addToPathFront /usr/lib/wsl/lib
