@@ -34,12 +34,42 @@ return {
             },
             handlers = {
                 function(server_name) -- default handler (optional)
-
                     require("lspconfig")[server_name].setup {
                         capabilities = capabilities
                     }
                 end,
 
+                ["vtsls"] = function()
+                    require("lspconfig").vtsls.setup({
+                        capabilities = capabilities,
+                        settings = {
+                            typescript = {
+                                preferences = {
+                                    -- Enables "Extract to function", "Extract to constant", etc.
+                                    includeCompletionsForModuleExports = true,
+                                },
+                            },
+                            javascript = {
+                                preferences = {
+                                    includeCompletionsForModuleExports = true,
+                                },
+                            },
+                            vtsls = {
+                                -- Explicitly enable additional refactoring code actions
+                                enableMoveToFileCodeAction = true,
+                                autoUseWorkspaceTsdk = true,
+                                experimental = {
+                                    -- Enables experimental refactoring features if available
+                                    completion = {
+                                        enableServerSideFuzzyMatch = true,
+                                    },
+                                },
+                            },
+                        },
+                    })
+                end,
+                ["ts_ls"] = function() end,
+                ["tsserver"] = function() end,
                 ["lua_ls"] = function()
                     local lspconfig = require("lspconfig")
                     lspconfig.lua_ls.setup {
@@ -78,6 +108,7 @@ return {
             })
         })
 
+
         vim.diagnostic.config({
             -- update_in_insert = true,
             float = {
@@ -90,7 +121,7 @@ return {
             },
         })
         vim.keymap.set("n", "<leader>rn", vim.lsp.buf.rename, {})
-        vim.keymap.set({"n", "v"}, "<leader>ca", vim.lsp.buf.code_action, {})
+        vim.keymap.set({ "n", "v" }, "<leader>ca", vim.lsp.buf.code_action, {})
         vim.keymap.set("n", "<leader>gn", vim.diagnostic.goto_next)
         vim.keymap.set("n", "<leader>gp", vim.diagnostic.goto_prev)
     end

@@ -118,3 +118,67 @@ esac
 # pnpm end
 fpath=(~/.zsh/completions $fpath)
 autoload -U compinit && compinit
+
+
+
+export SHOW_AWS_PROMPT=false
+source "$HOME/git/.dotfiles/zsh/kube-ps1/kube-ps1.sh"
+
+KUBE_PS1_CTX_COLOR="black"
+KUBE_PS1_NS_COLOR="black"
+KUBE_PS1_SYMBOL_COLOR="black"
+KUBE_PS1_SYMBOL_ENABLE="true"
+KUBE_PS1_PREFIX=""
+KUBE_PS1_SUFFIX=""
+
+function shorten_eks_cluster_name() {
+  echo "${1#*cluster/}"
+}
+KUBE_PS1_CLUSTER_FUNCTION="shorten_eks_cluster_name"
+
+build_rprompt() {
+  local aws_profile="${AWS_VAULT:-$AWS_PROFILE}"
+  local kube_prompt=$(kube_ps1)
+  local rprompt=""
+  local prev_bg="default"
+
+  # --- AWS Segment (Yellow background, Black text) ---
+  if [[ -n "$aws_profile" ]]; then
+    rprompt+="%F{yellow}"
+    rprompt+="%K{yellow}%F{black} ☁ $aws_profile "
+    prev_bg="yellow"
+  fi
+
+  # --- Kubernetes Segment (Blue background, Black text) ---
+  if [[ -n "$kube_prompt" ]]; then
+    if [[ "$prev_bg" == "default" ]]; then
+      rprompt+="%F{blue}"
+    else
+      rprompt+="%K{yellow}%F{blue}"
+    fi
+    rprompt+="%K{blue}%F{black} ${kube_prompt} "
+  fi
+
+  # --- Clean Up ---
+  if [[ -n "$rprompt" ]]; then
+    rprompt+="%f%k"
+  fi
+  echo "$rprompt"
+}
+
+build_prompt() {
+  RETVAL=$?
+  prompt_status
+  prompt_virtualenv
+  prompt_context
+  prompt_dir
+  prompt_git
+  prompt_bzr
+  prompt_hg
+  prompt_end
+}
+
+setopt PROMPT_SUBST
+RPROMPT='$(build_rprompt)'
+
+[ -f "/home/talife/.ghcup/env" ] && . "/home/talife/.ghcup/env" # ghcup-env
