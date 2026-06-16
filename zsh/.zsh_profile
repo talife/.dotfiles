@@ -4,7 +4,7 @@ alias settings="env XDG_CURRENT_DESKTOP=GNOME gnome-control-center"
 alias aws-vault="/mnt/c/awsvault/aws-vault.exe"
 PERSONAL=$XDG_CONFIG_HOME/personal
 source $PERSONAL/env
-for i in `find -L $PERSONAL`; do
+for i in `find -L $PERSONAL -type f ! -name "env"`; do
     source $i
 done
 

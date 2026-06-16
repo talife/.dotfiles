@@ -182,3 +182,5 @@ setopt PROMPT_SUBST
 RPROMPT='$(build_rprompt)'
 
 [ -f "/home/talife/.ghcup/env" ] && . "/home/talife/.ghcup/env" # ghcup-env
+
+export PATH="/home/talife/.local/bin:$PATH"

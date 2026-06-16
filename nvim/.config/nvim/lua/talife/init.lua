@@ -42,6 +42,7 @@ autocmd({"BufWritePre"}, {
 })
 
 autocmd("BufWritePre", {
+    group = TalifeGroup,
     pattern = "*.go",
     callback = function()
         local params = vim.lsp.util.make_range_params()
