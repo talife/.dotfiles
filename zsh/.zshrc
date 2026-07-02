@@ -109,8 +109,8 @@ export NVM_DIR="$HOME/.config/nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 
 # pnpm
-export PNPM_HOME="/home/talife/.local/share/pnpm"
-export NODE_EXTRA_CA_CERTS="/home/talife/gitlab-full-chain.pem"
+export PNPM_HOME="$HOME/.local/share/pnpm"
+export NODE_EXTRA_CA_CERTS="$HOME/gitlab-full-chain.pem"
 case ":$PATH:" in
   *":$PNPM_HOME:"*) ;;
   *) export PATH="$PNPM_HOME:$PATH" ;;
@@ -181,6 +181,6 @@ build_prompt() {
 setopt PROMPT_SUBST
 RPROMPT='$(build_rprompt)'
 
-[ -f "/home/talife/.ghcup/env" ] && . "/home/talife/.ghcup/env" # ghcup-env
+[ -f "$HOME/.ghcup/env" ] && . "$HOME/.ghcup/env" # ghcup-env
 
 export PATH="/home/talife/.local/bin:$PATH"

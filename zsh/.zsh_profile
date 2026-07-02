@@ -1,7 +1,22 @@
 export XDG_CONFIG_HOME=$HOME/.config
 
+# ---------------------------------------------------------
+# WSL-Specific Configurations
+# ---------------------------------------------------------
+if grep -qE "(Microsoft|WSL)" /proc/version &> /dev/null; then
+    alias aws-vault="/mnt/c/awsvault/aws-vault.exe"
+
+    export GALLIUM_DRIVER=d3d12
+    export MESA_D3D12_DEFAULT_ADAPTER_NAME=NVIDIA
+
+    addToPathFront /mnt/c/Windows/System32
+    addToPathFront /mnt/c/awsvault
+    addToPathFront /usr/lib/wsl/lib
+else
+    alias aws-vault="aws-vault"
+fi
+
 alias settings="env XDG_CURRENT_DESKTOP=GNOME gnome-control-center"
-alias aws-vault="/mnt/c/awsvault/aws-vault.exe"
 PERSONAL=$XDG_CONFIG_HOME/personal
 source $PERSONAL/env
 for i in `find -L $PERSONAL -type f ! -name "env"`; do
@@ -15,8 +30,6 @@ export REPOS=$HOME/git
 export GOPATH=$HOME/go
 export DOTFILES=$REPOS/.dotfiles
 export GIT_EDITOR=nvim
-export GALLIUM_DRIVER=d3d12
-export MESA_D3D12_DEFAULT_ADAPTER_NAME=NVIDIA
 export GPG_TTY=$(tty)
 
 addToPathFront /usr/local/go/bin
@@ -25,8 +38,5 @@ addToPathFront $HOME/.local/bin
 addToPathFront $HOME/.local/bin/dafny
 addToPathFront $HOME/.local/go/bin
 addToPathFront $HOME/go/bin
-addToPathFront /mnt/c/Windows/System32
-addToPathFront /mnt/c/awsvault
 addToPathFront $HOME/adr-tools/src
 addToPathFront ${ASDF_DATA_DIR:-$HOME/.asdf}/shims
-addToPathFront /usr/lib/wsl/lib
