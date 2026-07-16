@@ -122,7 +122,7 @@ autoload -U compinit && compinit
 
 
 export SHOW_AWS_PROMPT=false
-source "$HOME/git/.dotfiles/zsh/kube-ps1/kube-ps1.sh"
+source "$HOME/.local/share/kube-ps1/kube-ps1.sh"
 
 KUBE_PS1_CTX_COLOR="black"
 KUBE_PS1_NS_COLOR="black"
