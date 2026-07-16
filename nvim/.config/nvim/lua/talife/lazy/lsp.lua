@@ -85,7 +85,10 @@ return {
                 end,
             }
         })
-
+        vim.lsp.config("dafny", {
+            capabilities = capabilities,
+        })
+        vim.lsp.enable("dafny")
         local cmp_select = { behavior = cmp.SelectBehavior.Select }
 
         cmp.setup({
